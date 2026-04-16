@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Album de Monedas
 
-## Getting Started
+Aplicación web para gestionar una colección de monedas. Construida con Next.js 15, autenticación con Google vía NextAuth v5, base de datos PostgreSQL en Supabase (via Prisma 7), y desplegada en Cloudflare Pages.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** Next.js 15 (App Router)
+- **Auth:** NextAuth v5 (beta) + Google OAuth + Prisma Adapter
+- **ORM:** Prisma 7 con adaptador `@prisma/adapter-pg`
+- **DB:** PostgreSQL en Supabase
+- **UI:** Tailwind CSS v4 + shadcn/ui + Base UI
+- **Deploy:** Cloudflare Pages via `@cloudflare/next-on-pages`
+
+## Variables de entorno
+
+Crea un archivo `.env.local` con:
+
+```env
+DATABASE_URL="postgresql://..."
+AUTH_SECRET="..."
+AUTH_GOOGLE_ID="..."
+AUTH_GOOGLE_SECRET="..."
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desarrollo local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Base de datos
 
-## Learn More
+```bash
+# Generar cliente Prisma
+npx prisma generate
 
-To learn more about Next.js, take a look at the following resources:
+# Aplicar migraciones
+npx prisma migrate deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Ver datos
+npx prisma studio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+El proyecto usa `@cloudflare/next-on-pages`. La configuración está en [wrangler.toml](wrangler.toml).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx @cloudflare/next-on-pages
+```
