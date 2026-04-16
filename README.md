@@ -9,7 +9,7 @@ Aplicación web para gestionar una colección de monedas. Construida con Next.js
 - **ORM:** Prisma 7 con adaptador `@prisma/adapter-pg`
 - **DB:** PostgreSQL en Supabase
 - **UI:** Tailwind CSS v4 + shadcn/ui + Base UI
-- **Deploy:** Cloudflare Pages via `@cloudflare/next-on-pages`
+- **Deploy:** Cloudflare Pages via `@opennextjs/cloudflare`
 
 ## Variables de entorno
 
@@ -44,8 +44,12 @@ npx prisma studio
 
 ## Deploy
 
-El proyecto usa `@cloudflare/next-on-pages`. La configuración está en [wrangler.toml](wrangler.toml).
+El proyecto usa `@opennextjs/cloudflare`. La configuración está en [wrangler.toml](wrangler.toml) y [open-next.config.ts](open-next.config.ts).
 
 ```bash
-npx @cloudflare/next-on-pages
+# Build + deploy a Cloudflare Pages
+npm run deploy
+
+# Preview local con Workers
+npm run preview
 ```
