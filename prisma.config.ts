@@ -7,7 +7,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    // DIRECT_URL (puerto 5432) para migraciones — sin pooler
-    url: process.env["DIRECT_URL"],
+    url: process.env["DATABASE_URL"],
   },
 });
